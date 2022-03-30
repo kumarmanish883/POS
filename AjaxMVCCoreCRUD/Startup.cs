@@ -26,6 +26,7 @@ namespace AjaxMVCCoreCRUD
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSession();
             services.AddDbContext<AjaxDbContext>(options =>
          options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
@@ -47,6 +48,7 @@ namespace AjaxMVCCoreCRUD
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 

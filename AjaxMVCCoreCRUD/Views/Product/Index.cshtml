@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    int intSno = 0;
 }
 
 
@@ -9,12 +10,25 @@
 <p>
     <a asp-action="Create" class="btn btn-sm btn-success ml-1">Create New</a>
 </p>
+<div class="col-4 p-0 justify-content-end" >
+    <form asp-controller="Product" asp-action="Index">
+        <span class="btn-group"></span>
+        <input class="form-control" type="text" name="SearchText" placeholder="Search Key"/>
+        <input class="p-1 ml-2 btn btn-sm btn-info" type="submit" value="Search"/>
+
+    </form>
+
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                
+                Sno
             </th>
+            <th>
+
+            </th>
+            <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.Code)
             </th>
@@ -39,7 +53,11 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+    intSno = intSno + 1;
         <tr>
+            <td>
+                @intSno
+            </td>
             <td>
                 
                 <img src="@item.ImageUrl" style="width:40px;height:40px"/>

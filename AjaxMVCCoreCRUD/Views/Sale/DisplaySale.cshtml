@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AjaxMVCCoreCRUD.Models.Sale>
+
+@{
+    ViewData["Title"] = "DisplaySale";
+}
+
+<h1>DisplaySale</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    @Html.ActionLink("Creat new","SaleProduct","sale",new {@class="btn btn-primary"})
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("SaleProduct")
+            </th>
+            <th>
+                @Html.DisplayName("Sale_Quantity")
+            </th>
+            <th>
+                @Html.DisplayName("Sale Date")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sale_Product)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sale_Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SaleDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit","Edit","Sale",new {id=item.SaleId},new { @class="btn btn-primary"})
+                @Html.ActionLink("Details", "Details", "Sale",new {id=item.SaleId},new { @class="btn btn-Success"})
+                @Html.ActionLink("Delete", "Delete", "Sale",new {id=item.SaleId},new { @class="btn btn-danger"})
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

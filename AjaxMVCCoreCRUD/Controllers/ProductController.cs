@@ -1,5 +1,6 @@
 ﻿using AjaxMVCCoreCRUD.Data;
 using AjaxMVCCoreCRUD.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,9 +17,19 @@ namespace AjaxMVCCoreCRUD.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(string SearchText="")
         {
-            List<Product> products = _context.Products.ToList();
+            List<Product> products;
+            if (SearchText != "" && SearchText != null)
+            {
+                products = _context.Products.Where(p => p.Name.Contains(SearchText)).ToList();
+
+                   
+            }
+            else
+            
+                products = _context.Products.ToList();
+            
             return View(products);
         }
 
@@ -78,6 +89,7 @@ namespace AjaxMVCCoreCRUD.Controllers
             return RedirectToAction("Index");
 
         }
+        
 
         #region "ajax Function"
         [HttpPost]
